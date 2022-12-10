@@ -12,7 +12,7 @@ public class Order {
     private String status;
     private boolean isPaid;
     private Date date;
-    private int totalCost =calculateTotalCost();
+    private int totalCost = calculateTotalCost();
 
     private static HashMap<Integer, Order> allOrders = new HashMap<>();
 
@@ -36,7 +36,7 @@ public class Order {
     public String viewStatus(){
         return status;
     }
-    public void changeStatus(String status){
+    public void changeStatus(String status){//i would create this function in class Assistant, so only assistant can change the status
         this.status = status;
     }
 
