@@ -1,5 +1,7 @@
 package org.byt;
-
+/*
+ This class was created if you are not familiar with Singleton design pattern
+ */
 public class Main {
     public static void main(String[] args) {
         AssistantSingleton assis1 = AssistantSingleton.getInstance("lol");
