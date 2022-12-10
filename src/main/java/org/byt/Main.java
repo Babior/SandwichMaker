@@ -1,6 +1,6 @@
 package org.byt;
 /*
- This class was created if you are not familiar with Singleton design pattern
+ This class was created to getfamiliar with Singleton.
  */
 public class Main {
     public static void main(String[] args) {
