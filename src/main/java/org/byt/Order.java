@@ -36,7 +36,7 @@ public class Order {
     public String viewStatus(){
         return status;
     }
-    public void changeStatus(String status){//i would create this function in class Assistant, so only assistant can change the status
+    public void changeStatus(String status){//i could create this function in class Assistant, so only assistant can change the status
         this.status = status;
     }
 
