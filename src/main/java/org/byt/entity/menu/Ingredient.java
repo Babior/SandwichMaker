@@ -2,12 +2,14 @@ package org.byt.entity.menu;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
 @Data
+@Getter //viewIngredientList
 public class Ingredient {
     private String name;
     private String description;

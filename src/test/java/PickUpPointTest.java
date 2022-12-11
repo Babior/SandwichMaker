@@ -18,7 +18,7 @@ public class PickUpPointTest {
     @BeforeClass
     public static void testSetup() {
         Warehouse warehouse = new Warehouse("Main", new HashMap<>());
-        MenuPosition menuPosition = new MenuPosition();
+        MenuPosition menuPosition = new MenuPosition("Sandwich", new BigDecimal(100), true, null,null);//add random values
         Menu menu = new Menu(List.of(menuPosition));
         pickUpPoint = new PickUpPoint("Koszykowa", warehouse, menu, new HashMap<>());
     }
