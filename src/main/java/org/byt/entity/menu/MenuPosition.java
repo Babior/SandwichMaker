@@ -10,5 +10,7 @@ public class MenuPosition {
     private String name;
     private BigDecimal price;
     private boolean isAvailable;
+    private CustomSandwich customSandwich;
+    private StandardPosition standardPosition;
 
 }
