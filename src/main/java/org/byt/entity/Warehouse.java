@@ -16,14 +16,13 @@ public class Warehouse {
 
     private String name;
 
-    private Map<Long, StandardPosition> standardPositions;
+    private List<StandardPosition> standardPositions;
 
     @Getter
     private static List<Warehouse> warehouses = new ArrayList<>();
 
-
     public void update(List<StandardPosition> standardPositions) {
-        //do update
+        this.standardPositions.addAll(standardPositions);
     }
 
     public static Warehouse getByName(String name) {

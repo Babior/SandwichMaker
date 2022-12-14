@@ -12,14 +12,9 @@ public class SandwichMakerTest {
 
     }
 
-    @AfterClass
-    public static void testCleanup() {
-        // Do your cleanup here like close URL connection , releasing resources etc
-    }
-
-
+    //Create all objects needed to perform one order for a customer
     @Test
-    public void testSomeClass() {
+    public void testMainFlow() {
 
     }
 

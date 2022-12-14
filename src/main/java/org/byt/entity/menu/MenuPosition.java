@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Data
-@Getter //viewMenuPositionList
 public class MenuPosition {
 
     private String name;
@@ -17,6 +16,7 @@ public class MenuPosition {
     private CustomSandwich customSandwich;
     private StandardPosition standardPosition;
 
+    @Getter //viewMenuPositionList
     private static List<MenuPosition> menuPositionList = new ArrayList<>();
 
     public MenuPosition(String name, BigDecimal price, boolean isAvailable, CustomSandwich customSandwich, StandardPosition standardPosition) {
@@ -28,8 +28,12 @@ public class MenuPosition {
         menuPositionList.add(this);
     }
 
-    public static void blockPosition(){}
+    public void blockPosition(){
+        this.isAvailable = false;
+    }
 
-    public static void unblockPosition(){}
+    public void unblockPosition(){
+        this.isAvailable = true;
+    }
 
 }

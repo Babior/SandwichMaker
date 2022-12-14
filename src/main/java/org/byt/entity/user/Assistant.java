@@ -1,5 +1,6 @@
 package org.byt.entity.user;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
 import org.byt.dto.AssistantRequest;
@@ -15,10 +16,10 @@ import java.util.List;
 import java.util.Map;
 
 @Data
+@AllArgsConstructor
 public class Assistant extends User {
 
-    private PickUpPoint pickUpPoint;
-
+    private List<Order> orders;
     private Warehouse warehouse;
     private BigDecimal salary;
     @Getter
@@ -27,14 +28,13 @@ public class Assistant extends User {
     public Assistant(AssistantRequest newUser) {
         super(newUser);
         this.salary = new BigDecimal(newUser.getSalary());
-        this.pickUpPoint = PickUpPoint.getByAddress(newUser.getPickUpPointAddress());
         this.warehouse = Warehouse.getByName(newUser.getWarehouseName());
         assistants.add(this);
     }
 
-    //TODO: на основании чего у нас считается зарплата? или после чего пересчитывается?
-    public int calculateSalary() {
-        return 0;
+
+    public BigDecimal calculateSalary() {
+        return salary.multiply(BigDecimal.valueOf(orders.size()));
     }
 
     @Override

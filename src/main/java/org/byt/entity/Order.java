@@ -1,5 +1,6 @@
 package org.byt.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
 import org.byt.constants.OrderStatusEnum;
@@ -12,31 +13,32 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.*;
 
-//TODO: constructor and makeOrder() method
 @Data
+@AllArgsConstructor
 public class Order {
 
     private UUID id = UUID.randomUUID();
     private OrderStatusEnum orderStatusEnum;
     private boolean isPaid;
     private LocalDateTime date;
-
     private String details;
-
     private int totalCost;
-
     private List<MenuPosition> menuPositions;
+    private PickUpPoint pickUpPoint;
+
+    private List<Payment> payments;
 
     @Getter //viewOrderList()
-    private static Map<UUID, Order> orders = new HashMap<>();
+    private static List<Order> orders = new ArrayList<>();
 
-    public Order(OrderStatusEnum orderStatusEnum, boolean isPaid, LocalDateTime date, String details, int totalCost, List<MenuPosition> menuPositions) {
+    public Order(OrderStatusEnum orderStatusEnum, boolean isPaid, LocalDateTime date, String details, int totalCost, List<MenuPosition> menuPositions, PickUpPoint pickUpPoint) {
         this.orderStatusEnum = orderStatusEnum;
         this.isPaid = isPaid;
         this.date = date;
         this.details = details;
         this.totalCost = totalCost;
         this.menuPositions = menuPositions;
+        this.pickUpPoint = pickUpPoint;
     }
 
     public void makeOrder(Customer customer, Payment payment) {
@@ -47,7 +49,7 @@ public class Order {
         }
         this.date = LocalDateTime.now();
         customer.getOrderList().put(this.id, this);
-        orders.put(this.id, this);
+        orders.add(this);
     }
 
     public BigDecimal calculateTotalCost() {
@@ -56,5 +58,13 @@ public class Order {
 
     public void cancelOrder() {
         this.orderStatusEnum = OrderStatusEnum.CANCELLED;
+    }
+
+    public void viewStatus() {
+
+    }
+
+    public void changeStatus(OrderStatusEnum orderStatusEnum) {
+        this.orderStatusEnum = orderStatusEnum;
     }
 }

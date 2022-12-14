@@ -1,25 +1,22 @@
 package org.byt.entity.menu;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Data
+@AllArgsConstructor
 public class CustomSandwich {
+
     private String type;
+    private List<Ingredient> ingredients;
+    private List<CustomIngredientsAmount> customIngredientsAmounts;
 
-    private Ingredient ingredient;
+    private static List<CustomSandwich> customSandwichList = new ArrayList<>();
 
-    private List<CustomSandwich> customSandwichList = new ArrayList<>();
-
-
-    public CustomSandwich(String type, Ingredient ingredient) {
-        this.type = type;
-        this.ingredient = ingredient;
+    public void createCustomSandwich() {
         customSandwichList.add(this);
-    }
-    public void createCustomSandwich(){
-        //TODO придумать как cделать сендвич
     }
 }

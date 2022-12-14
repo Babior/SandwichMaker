@@ -1,6 +1,8 @@
 package org.byt.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import org.byt.constants.PaymentMethodEnum;
 import org.byt.constants.PaymentStatusEnum;
 import org.byt.entity.user.Customer;
@@ -10,6 +12,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Data
+@AllArgsConstructor
 public class Payment {
 
     private UUID id = UUID.randomUUID();
@@ -17,9 +20,9 @@ public class Payment {
     private Order order;
     private LocalDateTime paymentDate;
     private PaymentMethodEnum paymentMethod;
-
     private PaymentStatusEnum paymentStatus;
 
+    @Getter
     private static List<Payment> payments;
 
     public Payment(Customer customer, Order order, PaymentMethodEnum paymentMethod, PaymentStatusEnum paymentStatus) {
