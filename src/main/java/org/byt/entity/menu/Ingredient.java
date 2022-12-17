@@ -35,6 +35,9 @@ public class Ingredient {
         this.customIngredientsAmounts = customIngredientsAmounts;
         ingredients.add(this);
     }
+    public boolean getIsAvailable() {
+        return this.isAvailable;
+    }
 
     public void blockIngredient() {
         this.isAvailable = false;

@@ -25,11 +25,32 @@ public class PickUpPoint {
     @Getter
     private static List<PickUpPoint> pickUpPoints = new ArrayList<>();
 
+    public PickUpPoint(String address, Warehouse warehouse, Menu menu, Map<Long, Order> orders) {
+        this.address = address;
+        this.warehouse = warehouse;
+        this.menu = menu;
+        this.orders = orders;
+        pickUpPoints.add(this);
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
     public static PickUpPoint getByAddress(String address) {
 
         return pickUpPoints.stream()
                 .filter(p -> p.getAddress().equals(address))
                 .findAny()
                 .orElseThrow(() -> new ObjectNotFoundException(PickUpPoint.class.getName(), address));
+    }
+
+    public List<PickUpPoint> getMenuPositionList(){
+        return pickUpPoints;
+    }
+
+    public boolean createPickUpPoint() {
+        pickUpPoints.add(this);
+        return true;
     }
 }

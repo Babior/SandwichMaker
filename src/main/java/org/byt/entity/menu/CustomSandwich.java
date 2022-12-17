@@ -16,7 +16,14 @@ public class CustomSandwich {
 
     private static List<CustomSandwich> customSandwichList = new ArrayList<>();
 
-    public void createCustomSandwich() {
+    public CustomSandwich(String type, List<Ingredient> ingredients, List<CustomIngredientsAmount> customIngredientsAmounts){
+        this.type = type;
+        this.ingredients = ingredients;
+        this.customIngredientsAmounts = customIngredientsAmounts;
         customSandwichList.add(this);
+    }
+    public boolean createCustomSandwich() {
+        customSandwichList.add(this);
+        return true;
     }
 }

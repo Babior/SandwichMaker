@@ -20,4 +20,9 @@ public class Menu {
         this.menuPositions = menuPositions;
         menus.add(this);
     }
+
+    public boolean createMenu() {
+        menus.add(this);
+        return true;
+    }
 }

@@ -28,6 +28,19 @@ public class MenuPosition {
         menuPositionList.add(this);
     }
 
+    public boolean getIsAvailable() {
+        return this.isAvailable;
+    }
+
+    public List<MenuPosition> getMenuPositionList(){
+        return menuPositionList;
+    }
+
+    public boolean createMenuPosition(){
+        menuPositionList.add(this);
+        return true;
+    }
+
     public void blockPosition(){
         this.isAvailable = false;
     }

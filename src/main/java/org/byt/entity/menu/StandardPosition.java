@@ -19,6 +19,12 @@ public class StandardPosition {
     public StandardPosition(Ingredient ingredient, int kcal, List<CustomIngredientsAmount> customIngredientsAmounts){
         this.ingredient = ingredient;
         this.kcal = kcal;
+        this.customIngredientsAmounts = customIngredientsAmounts;
         standardPositionList.add(this);
+    }
+
+    public boolean createStandardPosition() {
+        standardPositionList.add(this);
+        return true;
     }
 }
