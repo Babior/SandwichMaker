@@ -1,6 +1,5 @@
 package org.byt.entity;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
 import org.byt.entity.menu.MenuPosition;
@@ -10,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Data
-@AllArgsConstructor
+
 public class Warehouse {
 
     private String name;

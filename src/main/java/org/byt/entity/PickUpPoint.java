@@ -1,6 +1,5 @@
 package org.byt.entity;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
 import org.byt.entity.menu.Menu;
@@ -11,7 +10,6 @@ import java.util.List;
 import java.util.Map;
 
 @Data
-@AllArgsConstructor
 public class PickUpPoint {
 
     private String address; //makes more sense to decompose to country, city, street, building number

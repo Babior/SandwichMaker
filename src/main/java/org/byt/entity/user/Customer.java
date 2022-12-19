@@ -14,6 +14,8 @@ import java.util.*;
 @AllArgsConstructor
 public class Customer extends User {
     private String phone;
+    // message about payment status
+    private String message;
 
     private List<Payment> payments;
     private final Map<UUID, Order> orderList;

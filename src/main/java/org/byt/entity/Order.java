@@ -1,6 +1,5 @@
 package org.byt.entity;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
 import org.byt.constants.OrderStatusEnum;
@@ -14,7 +13,6 @@ import java.time.LocalDateTime;
 import java.util.*;
 
 @Data
-@AllArgsConstructor
 public class Order {
 
     private UUID id = UUID.randomUUID();
@@ -31,10 +29,10 @@ public class Order {
     @Getter //viewOrderList()
     private static List<Order> orders = new ArrayList<>();
 
-    public Order(OrderStatusEnum orderStatusEnum, boolean isPaid, LocalDateTime date, String details, int totalCost, List<MenuPosition> menuPositions, PickUpPoint pickUpPoint) {
+    public Order(OrderStatusEnum orderStatusEnum, boolean isPaid, String details, int totalCost, List<MenuPosition> menuPositions, PickUpPoint pickUpPoint) {
         this.orderStatusEnum = orderStatusEnum;
         this.isPaid = isPaid;
-        this.date = date;
+        this.date = LocalDateTime.now();
         this.details = details;
         this.totalCost = totalCost;
         this.menuPositions = menuPositions;
@@ -53,6 +51,7 @@ public class Order {
     }
 
     public BigDecimal calculateTotalCost() {
+        this.totalCost = menuPositions.stream().map(MenuPosition::getPrice).reduce(BigDecimal.ZERO, BigDecimal::add).intValue();
         return menuPositions.stream().map(MenuPosition::getPrice).reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
@@ -60,8 +59,8 @@ public class Order {
         this.orderStatusEnum = OrderStatusEnum.CANCELLED;
     }
 
-    public void viewStatus() {
-
+    public OrderStatusEnum viewStatus() {
+        return this.orderStatusEnum;
     }
 
     public void changeStatus(OrderStatusEnum orderStatusEnum) {

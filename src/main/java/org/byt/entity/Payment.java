@@ -1,6 +1,5 @@
 package org.byt.entity;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
 import org.byt.constants.PaymentMethodEnum;
@@ -8,11 +7,11 @@ import org.byt.constants.PaymentStatusEnum;
 import org.byt.entity.user.Customer;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 @Data
-@AllArgsConstructor
 public class Payment {
 
     private UUID id = UUID.randomUUID();
@@ -23,7 +22,7 @@ public class Payment {
     private PaymentStatusEnum paymentStatus;
 
     @Getter
-    private static List<Payment> payments;
+    private static List<Payment> payments = new ArrayList<>();
 
     public Payment(Customer customer, Order order, PaymentMethodEnum paymentMethod, PaymentStatusEnum paymentStatus) {
         this.customer = customer;
@@ -35,19 +34,29 @@ public class Payment {
 
     public void makePayment() {
         payments.add(this);
+        changePaymentStatus(PaymentStatusEnum.CONFIRMED);
+        this.order.setDate(LocalDateTime.now());
         this.order.setPaid(true);
     }
 
-    public void sendConfirmation(Order o) {
-        if (paymentStatus.equals(PaymentStatusEnum.CONFIRMED)) {
-            //sendConfirmation to customer
-        }
+    public void changePaymentStatus(PaymentStatusEnum status){
+        this.paymentStatus = status;
     }
 
-    public void sendRejection(Order o) {
-        if (paymentStatus.equals(PaymentStatusEnum.REJECTED)) {
-            //sendRejection to customer
+    public String sendConfirmation(Order o) {
+        if (paymentStatus.equals(PaymentStatusEnum.CONFIRMED)) {
+            return sendPaymentInfo() + " was confirmed";
         }
+        //TODO: exception if paymentStatus is not confirmed
+        return null;
+    }
+
+    public String sendRejection(Order o) {
+        if (paymentStatus.equals(PaymentStatusEnum.REJECTED)) {
+            return sendPaymentInfo() + " was rejected";
+        }
+        //TODO: exception if paymentStatus is not rejected
+        return null;
     }
 
     public String sendPaymentInfo() {
